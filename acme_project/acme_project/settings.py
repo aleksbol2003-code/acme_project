@@ -1,4 +1,4 @@
-from pathlib import Path
+from pathlib import Path  # type: ignore
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bootstrap5',
     'birthday.apps.BirthdayConfig',
     'pages.apps.PagesConfig',
 ]
