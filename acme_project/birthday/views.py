@@ -18,19 +18,23 @@ class BirthdayListView(ListView):
     # ...сортировку, которая будет применена при выводе списка объектов:
     ordering = 'id'
     # ...и даже настройки пагинации:
-    paginate_by = 10 
+    paginate_by = 10
+
 
 class BirthdayCreateView(CreateView):
     model = Birthday
     form_class = BirthdayForm
 
+
 class BirthdayUpdateView(UpdateView):
     model = Birthday
     form_class = BirthdayForm
 
+
 class BirthdayDeleteView(DeleteView):
     model = Birthday
     success_url = reverse_lazy('birthday:list')
+
 
 class BirthdayDetailView(DetailView):
     model = Birthday
@@ -44,4 +48,5 @@ class BirthdayDetailView(DetailView):
             self.object.birthday
         )
         # Возвращаем словарь контекста.
-        return context 
+        return context
+

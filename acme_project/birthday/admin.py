@@ -4,4 +4,4 @@ from django.contrib import admin  # type: ignore
 from .models import Birthday
 
 # ...и регистрируем её в админке:
-admin.site.register(Birthday) 
+admin.site.register(Birthday)
