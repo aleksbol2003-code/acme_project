@@ -24,5 +24,19 @@ urlpatterns = [
         ),
         name='registration',
     ),
-    # В конце добавляем к списку вызов функции static.
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Добавляем debug_toolbar, если DEBUG = True
+if settings.DEBUG:
+    import debug_toolbar
+    # Добавить к списку urlpatterns список адресов из приложения debug_toolbar:
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+
+# В конце добавляем обработку медиафайлов
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# Обработчик 404-ошибок (вне urlpatterns)
+handler404 = 'core.views.page_not_found'

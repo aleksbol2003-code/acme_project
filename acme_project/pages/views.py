@@ -3,6 +3,7 @@ from django.views.generic import TemplateView  # type: ignore
 
 from birthday.models import Birthday
 
+
 class HomePage(TemplateView):
     # В атрибуте template_name обязательно указывается имя шаблона,
     # на основе которого будет создана возвращаемая страница.
@@ -15,4 +16,4 @@ class HomePage(TemplateView):
         # значение ключа — число объектов модели Birthday.
         context['total_count'] = Birthday.objects.count()
         # Возвращаем изменённый словарь контекста.
-        return context 
+        return context
