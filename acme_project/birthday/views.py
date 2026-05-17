@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin  # type: ignore
 from django.shortcuts import get_object_or_404, redirect  # type: ignore
 
 from .forms import BirthdayForm, CongratulationForm
-from .models import Birthday, Congratulation
+from .models import Birthday  # , Congratulation
 from .utils import calculate_birthday_countdown
 
 
@@ -24,6 +24,13 @@ def simple_view(request):
 class BirthdayListView(LoginRequiredMixin, ListView):
     # Указываем модель, с которой работает CBV...
     model = Birthday
+    # По умолчанию этот класс
+    # выполняет запрос queryset = Birthday.objects.all(),
+    # но мы его переопределим и присоединены связанные
+    # записи из таблицы (auth_user) :
+    queryset = Birthday.objects.prefetch_related(
+        'tags'
+    ).select_related('author')
     # ...сортировку, которая будет применена при выводе списка объектов:
     ordering = 'id'
     # ...и даже настройки пагинации:
